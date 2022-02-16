@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-monarch-angular
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-monarch-angular
+  template:
+    metadata:
+      labels:
+        app: dev-monarch-angular
+    spec:
+      containers:
+        - name: dev-monarch-front-end
+          image: <image URI>
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "500m"
+          ports:
+            - containerPort: 80
+            - containerPort: 443

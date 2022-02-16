@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staging-monarch-angular
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staging-monarch-angular
+  template:
+    metadata:
+      labels:
+        app: staging-monarch-angular
+    spec:
+      containers:
+        - name: staging-monarch-front-end
+          image: 862150331066.dkr.ecr.us-east-2.amazonaws.com/monarch-angular:stage-0.1.2022.02.15.173557
+          # resources:
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "500m"
+          ports:
+            - containerPort: 80
+            - containerPort: 443

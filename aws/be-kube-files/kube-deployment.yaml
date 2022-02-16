@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monarch-flask
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: monarch-flask
+  template:
+    metadata:
+      # Also functions as the hostname by default
+      name: monarch-api
+      labels:
+        app: monarch-flask
+    spec:
+      containers:
+      - name: api
+        image: <image URI>
+        # Not currently limiting the resources of the pod/container
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        # When deploying, test this section by uncommenting it out, if the
+        # pods generate as usual and do not get stuck in a recreation loop,
+        # the health check is functioning correctly. If successful, then
+        # make a new pull request with this section uncommented.
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 443
+        #   initialDelaySeconds: 3
+        #   periodSeconds: 10
+        ports:
+        - containerPort: 80
+        - containerPort: 443
