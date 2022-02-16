@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monarch-angular
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: monarch-angular
+  template:
+    metadata:
+      labels:
+        app: monarch-angular
+    spec:
+      containers:
+        - name: monarch-front-end
+          image: 862150331066.dkr.ecr.us-east-2.amazonaws.com/monarch-angular:0.1.2022.02.16.223759
+          # resources:
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "500m"
+          ports:
+            - containerPort: 80
+            - containerPort: 443

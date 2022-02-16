@@ -25,13 +25,13 @@ if (env !== 'DEV' && env !== 'PRD' && env !== 'STG') {
 const pods = execSync(`kubectl get pods`).toString();
 // grab the pod name
 let pod = '';
-if (project === 'FE') {
+if (project === 'BE') {
   switch(env) {
     case 'DEV': pod = pods.match(/monarch-flask-dev-\w{9}-\w{5}/); break;
     case 'STG': pod = pods.match(/monarch-flask-staging-\w{10}-\w{5}/); break;
     case 'PRD': pod = pods.match(/monarch-flask-\w{10}-\w{5}/); break;
   }
-} else if (project === 'BE') {
+} else if (project === 'FE') {
   switch(env) {
     case 'DEV': pod = pods.match(/dev-monarch-angular-\w{9}-\w{5}/); break;
     case 'STG': pod = pods.match(/staging-monarch-angular-\w{10}-\w{5}/); break;
